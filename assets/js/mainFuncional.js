@@ -49,15 +49,16 @@ const Estudiantes = {
         $("#resultado").append(Estudiantes.mostrarlista(Lista));
     },
     Eliminar: function () {
-        Estudiantes.mostrarlista(estudiante.filter(function (arr) {
-            return (arr.puntosTecnicos + arr.puntosHSE) / 2 >= 70;
-        }));
-    },
-    Listar: function () {
+
         estudiante = estudiante.filter(function (arr) {
             return (arr.puntosTecnicos + arr.puntosHSE) / 2 >= 70;
         });
         Estudiantes.mostrarlista(estudiante);
+    },
+    Listar: function () {
+        Estudiantes.mostrarlista(estudiante.filter(function (arr) {
+            return (arr.puntosTecnicos + arr.puntosHSE) / 2 >= 70;
+        }));
     }
 }
 $(document).ready(Estudiantes.init);

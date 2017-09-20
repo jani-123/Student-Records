@@ -20,7 +20,7 @@ class Estudiantes {
             status : 'activo'
         }
         console.log(this.estudiante);
-        this.estudiante.push(alumno);
+        this.estudiante[this.estudiante.length]=alumno;
         $("#resultado").append(this.mostrar(alumno(alumno.length - 1)));
     }
     mostrar(alumno) {

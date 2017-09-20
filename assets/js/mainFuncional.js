@@ -20,12 +20,10 @@ const Estudiantes = {
             this.status = 'activo';
         }
         estudiante.push(new alumno);
-        //return new alumno();
-        // console.log(estudiante);
-        //$("#resultado").append(Estudiantes.mostrar(alumno));
-        //Estudiantes.mostrar(new alumno());
+        $("#resultado").append(Estudiantes.mostrar(alumno(alumno.length - 1)));
     },
     mostrar: function (alumno) {
+        $("#resultado").empty();
         for (let i in estudiante) {
             alumno = estudiante[i];
         }
@@ -33,33 +31,33 @@ const Estudiantes = {
                         <p><label>Puntos Tecnicos: </label> ${alumno.puntosTecnicos} </p>\
                         <P><label>Puntos HSE: </label> ${alumno.puntosHSE} </p></div>
                         <P><label>Estado: </label> ${alumno.status} </p></div>`);
-        // let cuadro = "";
-        // cuadro = (`<div> <p><label>Nombre: </label> ${alumno.nombre} </p>\
-        //                 <p><label>Puntos Tecnicos: </label> ${alumno.puntosTecnicos} </p>\
-        //                 <P><label>Puntos HSE: </label> ${alumno.puntosHSE} </p></div>`);
-        return 
-
     },
     mostrarlista: function (estudiante) {
-        var resultado = "";
-        // resultado.forEach(function(propiedades){
-        //     resultado += Estudiantes.mostrar(propiedades);
-
-        // });
-        $.each( estudiante, function( i, l ){
-            resultado += Estudiantes.mostrar( i + ": " + l );
-          });
-        return resultado;
+        $("#resultado").empty();
+        estudiante.map(function (arr) {
+            $("#resultado").append(`<div> <p><label>Nombre: </label> ${arr.nombre} </p>\
+            <p><label>Puntos Tecnicos: </label> ${arr.puntosTecnicos} </p>\
+            <P><label>Puntos HSE: </label> ${arr.puntosHSE} </p></div>
+            <P><label>Estado: </label> ${arr.status} </p></div>`);
+        })
     },
     obtenerListaEstudiantes: function () {
         return estudiante;
     },
     MostrarTodo: function () {
         let Lista = Estudiantes.obtenerListaEstudiantes();
-        console.log("lista", Lista);
         $("#resultado").append(Estudiantes.mostrarlista(Lista));
     },
-    
-
+    Eliminar: function () {
+        estudiante = estudiante.filter(function (arr) {
+            return (arr.puntosTecnicos + arr.puntosHSE) / 2 >= 70;
+        });
+        Estudiantes.mostrarlista(estudiante);
+    },
+    Listar: function () {
+        Estudiantes.mostrarlista(estudiante.filter(function (arr) {
+            return (arr.puntosTecnicos + arr.puntosHSE) / 2 >= 70;
+        }));
+    }
 }
 $(document).ready(Estudiantes.init);

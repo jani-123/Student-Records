@@ -17,41 +17,49 @@ const Estudiantes = {
             this.nombre = nombre;
             this.puntosTecnicos = puntosTecnicos;
             this.puntosHSE = puntosHSE;
-            //this.status = activo;
+            this.status = 'activo';
         }
         estudiante.push(new alumno);
         //return new alumno();
         // console.log(estudiante);
-        $("#resultado").append(Estudiantes.mostrar(alumno));
+        //$("#resultado").append(Estudiantes.mostrar(alumno));
+        //Estudiantes.mostrar(new alumno());
     },
     mostrar: function (alumno) {
         for (let i in estudiante) {
             alumno = estudiante[i];
         }
-        let cuadro = "";
-        cuadro = (`<div> <p><label>Nombre: </label> ${alumno.nombre} </p>\
+        $("#resultado").append(`<div> <p><label>Nombre: </label> ${alumno.nombre} </p>\
                         <p><label>Puntos Tecnicos: </label> ${alumno.puntosTecnicos} </p>\
-                        <P><label>Puntos HSE: </label> ${alumno.puntosHSE} </p></div>`);
-        return cuadro;
+                        <P><label>Puntos HSE: </label> ${alumno.puntosHSE} </p></div>
+                        <P><label>Estado: </label> ${alumno.status} </p></div>`);
+        // let cuadro = "";
+        // cuadro = (`<div> <p><label>Nombre: </label> ${alumno.nombre} </p>\
+        //                 <p><label>Puntos Tecnicos: </label> ${alumno.puntosTecnicos} </p>\
+        //                 <P><label>Puntos HSE: </label> ${alumno.puntosHSE} </p></div>`);
+        return 
+
     },
     mostrarlista: function (estudiante) {
         var resultado = "";
-        resultado.forEach(function(propiedades){
-            resultado += Estudiantes.mostrar(propiedades);
+        // resultado.forEach(function(propiedades){
+        //     resultado += Estudiantes.mostrar(propiedades);
 
-        });
-        
+        // });
+        $.each( estudiante, function( i, l ){
+            resultado += Estudiantes.mostrar( i + ": " + l );
+          });
         return resultado;
     },
     obtenerListaEstudiantes: function () {
         return estudiante;
-        console.log("sas", estudiante);
     },
     MostrarTodo: function () {
         let Lista = Estudiantes.obtenerListaEstudiantes();
         console.log("lista", Lista);
         $("#resultado").append(Estudiantes.mostrarlista(Lista));
-    }
+    },
+    
 
 }
 $(document).ready(Estudiantes.init);

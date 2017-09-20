@@ -1,6 +1,7 @@
 class Estudiantes {
     constructor(){
-        this.estudiante = [];
+        this.estudiante = []
+        console.log(this.estudiante);
     }
     setup() {
         $("#btnAgregar").click(this.Agregar);
@@ -8,17 +9,18 @@ class Estudiantes {
         $("#btnEliminar").click(this.Eliminar);
         $("#btnListar").click(this.Listar);
     }
-    Agregar() {
+    Agregar(estudiante) {
         let nombre = prompt("Ingrese Nombre De La Estudiante");
         let puntosTecnicos = parseInt(prompt("Ingrese Puntos Tecnicos"));
         let puntosHSE = parseInt(prompt("Ingrese Puntos de HSE"));
-        let alumno = function () {
-            this.nombre = nombre;
-            this.puntosTecnicos = puntosTecnicos;
-            this.puntosHSE = puntosHSE;
-            this.status = 'activo';
+        const alumno = {
+            nombre : nombre,
+            puntosTecnicos : puntosTecnicos,
+            puntosHSE : puntosHSE,
+            status : 'activo'
         }
-        this.estudiante.push(new alumno);
+        console.log(this.estudiante);
+        this.estudiante.push(alumno);
         $("#resultado").append(this.mostrar(alumno(alumno.length - 1)));
     }
     mostrar(alumno) {
@@ -33,7 +35,7 @@ class Estudiantes {
     }
     mostrarlista(estudiante) {
         $("#resultado").empty();
-        estudiante.map(function (arr) {
+        this.estudiante.map(function (arr) {
             $("#resultado").append(`<div> <p><label>Nombre: </label> ${arr.nombre} </p>\
             <p><label>Puntos Tecnicos: </label> ${arr.puntosTecnicos} </p>\
             <P><label>Puntos HSE: </label> ${arr.puntosHSE} </p></div>

@@ -1,28 +1,28 @@
 class Estudiantes {
     constructor(){
-        this.estudiante = []
+        this.estudiante = [];
         console.log(this.estudiante);
     }
     setup() {
-        $("#btnAgregar").click(this.Agregar);
-        $("#btnMostrar").click(this.MostrarTodo);
-        $("#btnEliminar").click(this.Eliminar);
-        $("#btnListar").click(this.Listar);
+        $("#btnAgregar").click( () => this.Agregar() );
+        $("#btnMostrar").click( () => this.MostrarTodo() );
+        $("#btnEliminar").click( () => this.Eliminar() );
+        $("#btnListar").click( () => this.Listar() );
     }
-    Agregar(estudiante) {
+    Agregar(estudiante){
         let nombre = prompt("Ingrese Nombre De La Estudiante");
         let puntosTecnicos = parseInt(prompt("Ingrese Puntos Tecnicos"));
         let puntosHSE = parseInt(prompt("Ingrese Puntos de HSE"));
-        const alumno = {
+        let alumno = {
             nombre : nombre,
             puntosTecnicos : puntosTecnicos,
             puntosHSE : puntosHSE,
             status : 'activo'
         }
         console.log(this.estudiante);
-        this.estudiante[this.estudiante.length]=alumno;
-        $("#resultado").append(this.mostrar(alumno(alumno.length - 1)));
-    }
+        this.estudiante.push(alumno);
+        $("#resultado").append(this.mostrar(alumno));
+    };
     mostrar(alumno) {
         $("#resultado").empty();
         for (let i in this.estudiante) {
